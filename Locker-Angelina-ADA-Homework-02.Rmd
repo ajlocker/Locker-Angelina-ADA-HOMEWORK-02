@@ -1,0 +1,122 @@
+---
+title: "Locker-Angelina-ADA-Homework-02"
+author: "Angelina Locker"
+date: "February 27, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+1. Every Saturday, at the same time, a primatologist goes and sits in the forest in the morning and listens for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number calls she will hear in that time is 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+```{r}
+x <- 0:30
+```
+
+1.a. What is the probability that she will hear more than 8 calls during any given session?
+
+``` {r}
+x <- 0:30
+l <- 15
+a <- ppois(q = 8, lambda = 15)
+eightplus <- 1-a
+eightplus
+```
+
+
+1.b. What is the probability that she will hear no calls in a session?
+
+``` {r}
+x <- 0:30
+l <- 15
+b <- ppois(q = 0, lambda = 15)
+zero <- 1-b
+zero
+```
+
+1.c. What is the probability that she will hear exactly 3 calls in a session?
+
+```{r}
+x <- 0:30
+l <- 15
+c <- dpois(x = 3, lambda = 15)
+exactthree <- 1-c
+exactthree
+```
+
+1.d. Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+```{r}
+ 
+ x <- 0:30
+l = 15
+probset <- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "x", ylab = "Pr(X = x)", main = paste0("Probability Mass Function\nlambda = ", 15))
+
+```
+ 
+
+1.e. Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+
+```{r}
+
+x <- 0:30
+l <- 15
+barplot(ppois(q = x, lambda = l), ylim = 0:1, space = 0, names.arg = x, xlab = "x", 
+    ylab = "Pr(X ≤ x)", main = paste0("Cumulative Probability\nlambda = ", 
+        l))
+```
+
+1.f. Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+
+2. Load in the dataset “zombies.csv” from my GitHub repository at https://github.com/difiore/ADA-2019. This data includes the first and last name and gender of the entire population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the East Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major see here for info on important post-zombie apocalypse majors
+
+```{r}
+
+library(curl)
+f <- f <- curl("https://raw.githubusercontent.com/difiore/ADA-2019/master/zombies.csv")
+d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(d)
+```
+
+2.a. Calculate the population mean and standard deviation for each quantitative random variable (height, weight, age, number of zombies killed, and years of education).
+NOTE: You will not want to use the built in var() and sd() commands as those are for samples.
+
+2.b. Use {ggplot} and make boxplots of each of these variable by gender.
+
+2.c. Use {ggplot} and make scatterplots of height and weight in relation to age. Do these variables seem to be related? In what way?
+
+2.d. Using histograms and Q-Q plots, check whether the quantitative variables seem to be drawn from a normal distribution. Which seem to be and which do not?
+
+HINT: Not all are drawn from a normal distribution! For those that are not, can you determine what common distribution they are drawn from?
+
+2.e. Now use the sample() function to sample ONE subset of 30 zombies (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable and construct the 95% confidence interval for each mean. Note that for the variables that are not drawn from the normal distribution, you will need to base your estimate of the CIs on some different distribution!
+
+2.f. Now draw 99 more random samples of 30 zombies out and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 100 means for each variable (each based on 30 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the sampling distribution for each variable? How do the standard deviations compare to the standard errors estimated in [2.e.]? What do these sampling distributions look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?
+
+When you are done, “knit” your R Markdown file to .html and push both your .Rmd and .html files up to GitHub for me to look at.
+
