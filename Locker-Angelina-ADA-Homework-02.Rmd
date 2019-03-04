@@ -2,7 +2,9 @@
 title: "Locker-Angelina-ADA-Homework-02"
 author: "Angelina Locker"
 date: "February 27, 2019"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -106,27 +108,290 @@ hist(two_year, xlim=c(0,30), xlab = "Observation", ylab = "# of Calls", main = "
 2. Load in the dataset “zombies.csv” from my GitHub repository at https://github.com/difiore/ADA-2019. This data includes the first and last name and gender of the entire population of 1000 people who have survived the zombie apocalypse and are now ekeing out an existence somewhere on the East Coast, along with several other variables (height, weight, age, number of years of education, number of zombies they have killed, and college major see here for info on important post-zombie apocalypse majors
 
 ```{r}
-
-library(curl)
-f <- f <- curl("https://raw.githubusercontent.com/difiore/ADA-2019/master/zombies.csv")
-d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+d <- read.csv(file = "C:/Users/ajlocker/Desktop/Data Analysis/zombies.csv", sep = ",", header =  TRUE, stringsAsFactors = FALSE)
 head(d)
 ```
 
 2.a. Calculate the population mean and standard deviation for each quantitative random variable (height, weight, age, number of zombies killed, and years of education).
 NOTE: You will not want to use the built in var() and sd() commands as those are for samples.
 
+```{r}
+library(tidyverse)
+library(psych)
+
+
+sel_data <- select(d,height, age, weight, zombies_killed, years_of_education)
+
+describe(sel_data)
+
+sd_height <- sqrt(sum((d$height-mean(d$height))^2)/length(d$height))
+                                                   
+sd_weight <- sqrt(sum((d$weight-mean(d$weight))^2)/length(d$weight))
+
+sd_age <- sqrt(sum((d$age-mean(d$age))^2)/length(d$age))
+
+sd_kills <- sqrt(sum((d$zombies_killed-mean(d$zombies_killed))^2)/length(d$zombies_killed)) 
+
+sd_edu <- sqrt(sum((d$years_of_education-mean(d$years_of_education))^2)/length(d$years_of_education)) 
+
+mean_height <- mean(d$height)
+
+mean_weight <- mean(d$weight)
+
+mean_age <- mean(d$age)
+
+mean_kills <- mean(d$zombies_killed)
+
+mean_edu <- mean(d$years_of_education)
+
+
+sd_height
+sd_age
+sd_weight
+sd_kills
+sd_edu
+
+mean_height
+mean_age
+mean_weight
+mean_kills
+mean_edu
+
+```
+ 
 2.b. Use {ggplot} and make boxplots of each of these variable by gender.
 
-2.c. Use {ggplot} and make scatterplots of height and weight in relation to age. Do these variables seem to be related? In what way?
+```{r}
+library(tidyverse)
+library(ggplot2)
+abox <- ggplot(data = d, aes(x = gender, y = age, color = gender)) + xlab("Gender") + ylab("Age") + geom_boxplot(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+abox
 
-2.d. Using histograms and Q-Q plots, check whether the quantitative variables seem to be drawn from a normal distribution. Which seem to be and which do not?
+wbox <- ggplot(data = d, aes(x = gender, y = weight, color = gender)) + xlab("Gender") + ylab("Weight") + geom_boxplot(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+wbox
+
+hbox <- ggplot(data = d, aes(x = gender, y = height, color = gender)) + xlab("Gender") + ylab("Height") + geom_boxplot(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+hbox
+
+zbox <- ggplot(data = d, aes(x = gender, y = zombies_killed, color = gender)) + xlab("Gender") + ylab("Kills") + geom_boxplot(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+zbox
+
+ebox <- ggplot(data = d, aes(x = gender, y = years_of_education, color = gender)) + xlab("Gender") + ylab("Education") + geom_boxplot(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+ebox
+
+```
+
+2.c. Use {ggplot} and make scatterplots of height and weight in relation to age. Do these variables seem to be related? In what way? *Both height and weight, in relation to age, have positive linear correlations. Height and age is a stong(ish) positive linear correlation; weight and age is a weak positive linear correlation* 
+
+```{r}
+hscat <- ggplot(data = d, aes(x = age, y = height)) + xlab("Age") + ylab("Height") + geom_point(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+hscat
+
+wscat <- ggplot(data = d, aes(x = age, y = weight)) + xlab("Age") + ylab("Weight") + geom_point(na.rm = TRUE) + theme(legend.position = "bottom", legend.title = element_blank())
+wscat
+
+```
+
+2.d. Using histograms and Q-Q plots, check whether the quantitative variables seem to be drawn from a normal distribution. Which seem to be and which do not? *Kills and Edu are not from normal distributions*
+
+```{r}
+hist(d$age)
+hist(d$weight)
+hist(d$height)
+hist(d$zombies_killed)
+hist(d$years_of_education)
+
+qqnorm(d$age, main = "QQ Age")
+qqline(d$age, col = "gray")
+
+qqnorm(d$weight, main = "QQ Weight")
+qqline(d$weight, col = "gray")
+
+qqnorm(d$height, main = "QQ Height")
+qqline(d$height, col = "gray")
+
+qqnorm(d$zombies_killed, main = "QQ Kills")
+qqline(d$zombies_killed, col = "gray")
+
+qqnorm(d$years_of_education, main = "QQ Education")
+qqline(d$years_of_education, col = "gray")
+```
+
 
 HINT: Not all are drawn from a normal distribution! For those that are not, can you determine what common distribution they are drawn from?
 
 2.e. Now use the sample() function to sample ONE subset of 30 zombies (without replacement) from this population and calculate the mean and sample standard deviation for each variable. Also estimate the standard error for each variable and construct the 95% confidence interval for each mean. Note that for the variables that are not drawn from the normal distribution, you will need to base your estimate of the CIs on some different distribution!
 
-2.f. Now draw 99 more random samples of 30 zombies out and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 100 means for each variable (each based on 30 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the sampling distribution for each variable? How do the standard deviations compare to the standard errors estimated in [2.e.]? What do these sampling distributions look like? Are they normally distributed? What about for those variables that you concluded were not originally drawn from a normal distribution?
+```{r}
+
+k <- 1  # number of subsets taken
+n <- 30  # subset size
+group <- NULL  # dummy
+
+for (i in 1:k) {
+  group <- sample(1:nrow(sel_data), size = n, replace = FALSE)
+}
+
+x <- sel_data[group, ]
+x
+```
+** means**
+```{r}
+
+hm <- mean(x$height)
+hm
+am <- mean(x$age)
+am
+wm <- mean(x$weight)
+wm
+zm <- mean(x$zombies_killed)
+zm
+em <- mean(x$years_of_education)
+em
+```
+** standard deviations**
+
+```{r}
+
+hsd <- sd(x$height)
+hsd
+asd <- sd(x$age)
+asd
+wsd <- sd(x$weight)
+wsd
+zsd <- sd(x$zombies_killed)
+zsd
+esd <- sd(x$years_of_education)
+esd
+```
+
+**standard errors**
+```{r}
+library(sciplot)
+hse <- se(x$height)
+hse
+ase <- se(x$age)
+ase
+wse <- se(x$weight)
+wse
+zse <- se(x$zombies_killed)
+zse
+ese <- se(x$years_of_education)
+ese
+```
+
+**confidence intervals**
+```{r}
+upperheight <- hm + qnorm(0.975, mean = 0, sd = 1) * hse
+lowerheight <- hm + qnorm(0.025, mean = 0, sd = 1) * hse 
+hci <- c(lowerheight, upperheight)
+hci
+
+upperage <- am + qnorm(0.975, mean = 0, sd = 1) * ase
+lowerage <- am + qnorm(0.025, mean = 0, sd = 1) * ase 
+aci <- c(lowerage, upperage)
+aci
+
+upperweight <- wm + qnorm(0.975, mean = 0, sd = 1) * wse
+lowerweight <- wm + qnorm(0.025, mean = 0, sd = 1) * wse 
+wci <- c(lowerweight, upperweight)
+wci
+
+upperkills <- zm + qnorm(0.975, mean = 0, sd = 1) * zse
+lowerkills <- zm + qnorm(0.025, mean = 0, sd = 1) * zse 
+zci <- c(lowerkills, upperkills)
+zci
+
+upperedu <- em + qnorm(0.975, mean = 0, sd = 1) * ese
+loweredu <- em + qnorm(0.025, mean = 0, sd = 1) * ese 
+eci <- c(loweredu, upperedu)
+eci
+
+```
+
+2.f. Now draw 99 more random samples of 30 zombies out and calculate the mean for each of the these samples. Together with the first sample you drew out, you now have a set of 100 means for each variable (each based on 30 observations), which constitutes a sampling distribution for each variable. What are the means and standard deviations of the sampling distribution for each variable? 
+
+```{r}
+set.seed(1)
+k <- 99  # number of subsets taken
+n <- 30  # subset size
+biggroup <- NULL  # dummy
+
+for (i in 1:99) {
+  biggroup[[i]] <- sample(1:nrow(sel_data), size = 30, replace = FALSE)
+}
+
+t <- sel_data[biggroup[[i]], ]
+t
+
+y <- rbind(t, x)
+y
+```
+**Group Means**
+
+```{r}
+
+mgh <- mean(y$height)
+mgh
+
+mga  <- mean(y$age)
+mga
+
+mgw <- mean(y$weight)
+mgw
+
+mgz <- mean(y$zombies_killed)
+mgz
+
+mge <- mean(y$years_of_education)
+mge
+```
+
+**group standard deviations**
+```{r}
+hgsd <- sd(y$height)
+hgsd
+agsd <- sd(y$age)
+agsd
+wgsd <- sd(y$weight)
+wgsd
+zgsd <- sd(y$zombies_killed)
+zgsd
+egsd <- sd(y$years_of_education)
+egsd
+```
+How do the standard deviations compare to the standard errors estimated in [2.e.]? *The standared deviations of the  the bigger group are all within the standard errors for the small group*
+
+What do these sampling distributions look like? 
+```{r}
+
+hist(y$height, xlab = "Mean of Height", main = "Distribution of Means of Height from Simulation")
+abline(v = mgh, col = "blue")  
+abline(v = mean(d$height), col = "red")  
+
+
+hist(y$age, xlab = "Mean of Age", main = "Distribution of Means of Age from Simulation")
+abline(v = mga, col = "blue")  
+abline(v = mean(d$age), col = "red")  
+
+hist(y$weight, xlab = "Mean of Weight", main = "Distribution of Means of Weight from Simulation")
+abline(v = mgw, col = "blue")  
+abline(v = mean(d$weight), col = "red")
+
+hist(y$zombies_killed, xlab = "Mean of Kills", main = "Distribution of Means of Kills from Simulation")
+abline(v = mgz, col = "blue")  
+abline(v = mean(d$zombies_killed), col = "red")
+
+hist(y$years_of_education, xlab = "Mean of Education", main = "Distribution of Means of Education from Simulation")
+abline(v = mge, col = "blue")  
+abline(v = mean(d$years_of_education), col = "red")
+  
+
+```
+
+Are they normally distributed? *not all of them, but age, height, and education appear to be.*
+
+What about for those variables that you concluded were not originally drawn from a normal distribution? *weight actually looks bimodal, so it's not a normal distribution, although I origianlly thought it was. I'm wondering if I parcelled out weight by gender if it would look like a normal distribution. The number of kills does not appear to be a normal distribution, but age, height, and education are more bell curve shaped.*
 
 When you are done, “knit” your R Markdown file to .html and push both your .Rmd and .html files up to GitHub for me to look at.
 
