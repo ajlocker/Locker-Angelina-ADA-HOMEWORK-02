@@ -262,11 +262,11 @@ Saturday monitoring sessions).
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] 12 10 23 14 14 16 14 15 15 12 13 17 14 13 14  6 12 13 11 13 13 12 16
-##  [24] 16 14 17 19 18 12 17 17 20 16 13 16 13 16 16 16 12 21 11 11 13 16 18
-##  [47] 15 12 12 10  7 15 15 19 12 16 17 10 13 16 12 20 10 16 16 19 15 13 15
-##  [70] 10 13 14 10 15 14 14 11 15 13 15 26  7 19 15 18 20 17 22 14 10 16  9
-##  [93] 11 21 20 15 18 14 14 12 18 13 18 12
+##   [1] 14  8 16 13 13 14 16 14 11 15 14 12 15 15 12 16 12 18 10 17 17 12 19
+##  [24] 14 14 18 14  7 12 14 14 14 15 14 17 11 16  9 16 14 12 26 17  8 21 10
+##  [47] 13 17 18 12 12 13 13 12 13 13 17 11 18 11 10 11 18 11 15 17 13 24 17
+##  [70] 15 10 12 16 12 17 15 21 21 17 17 16 15 18 11 13 18 14 16 17 11 12 15
+##  [93] 15 16 17 10 22 10 20 14 17 17 13 17
 \end{verbatim}
 
 1.f. Plot the simulated results using hist() and use xlim() to set the
@@ -300,9 +300,7 @@ the shape of the probability mass function you plotted above?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(curl)}
-\NormalTok{f <-}\StringTok{ }\NormalTok{f <-}\StringTok{ }\KeywordTok{curl}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/difiore/ADA-2019/master/zombies.csv"}\NormalTok{)}
-\NormalTok{d <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(f, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{d <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\DataTypeTok{file =} \StringTok{"C:/Users/ajlocker/Desktop/Data Analysis/zombies.csv"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{, }\DataTypeTok{header =}  \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
 \KeywordTok{head}\NormalTok{(d)}
 \end{Highlighting}
 \end{Shaded}
@@ -336,7 +334,7 @@ built in var() and sd() commands as those are for samples.
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.2.1 --
+## -- Attaching packages ------------------------------------------------------------------------------ tidyverse 1.2.1 --
 \end{verbatim}
 
 \begin{verbatim}
@@ -347,10 +345,9 @@ built in var() and sd() commands as those are for samples.
 \end{verbatim}
 
 \begin{verbatim}
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter()     masks stats::filter()
-## x dplyr::lag()        masks stats::lag()
-## x readr::parse_date() masks curl::parse_date()
+## -- Conflicts --------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
 \end{verbatim}
 
 \begin{Shaded}
@@ -521,8 +518,8 @@ gender.
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(ggplot2)}
-\NormalTok{a <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ age, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{a}
+\NormalTok{abox <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ age, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{abox}
 \end{Highlighting}
 \end{Shaded}
 
@@ -530,8 +527,8 @@ gender.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{w <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ weight, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{w}
+\NormalTok{wbox <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ weight, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{wbox}
 \end{Highlighting}
 \end{Shaded}
 
@@ -539,8 +536,8 @@ gender.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{h <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ height, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Height"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{h}
+\NormalTok{hbox <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ height, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Height"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{hbox}
 \end{Highlighting}
 \end{Shaded}
 
@@ -548,8 +545,8 @@ gender.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{z <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ zombies_killed, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Kills"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{z}
+\NormalTok{zbox <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ zombies_killed, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Kills"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{zbox}
 \end{Highlighting}
 \end{Shaded}
 
@@ -557,8 +554,8 @@ gender.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{e <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ years_of_education, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Education"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{e}
+\NormalTok{ebox <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gender, }\DataTypeTok{y =}\NormalTok{ years_of_education, }\DataTypeTok{color =}\NormalTok{ gender)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Gender"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Education"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{ebox}
 \end{Highlighting}
 \end{Shaded}
 
@@ -572,8 +569,8 @@ correlation; weight and age is a weak positive linear correlation}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{h <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ height)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Height"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{h}
+\NormalTok{hscat <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ height)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Height"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{hscat}
 \end{Highlighting}
 \end{Shaded}
 
@@ -581,8 +578,8 @@ correlation; weight and age is a weak positive linear correlation}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{w <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ weight)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
-\NormalTok{w}
+\NormalTok{wscat <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ weight)) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Age"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Weight"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.title =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{wscat}
 \end{Highlighting}
 \end{Shaded}
 
@@ -690,37 +687,290 @@ some different distribution!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{variables <-}\StringTok{ }
 \NormalTok{k <-}\StringTok{ }\DecValTok{1}  \CommentTok{# number of subsets taken}
 \NormalTok{n <-}\StringTok{ }\DecValTok{30}  \CommentTok{# subset size}
-\NormalTok{age <-}\StringTok{ }\OtherTok{NULL} \CommentTok{# dummy}
+\NormalTok{group <-}\StringTok{ }\OtherTok{NULL}  \CommentTok{# dummy}
+
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{k) \{}
-\NormalTok{  age[[i]] <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{replace =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{  group <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(sel_data), }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{replace =} \OtherTok{FALSE}\NormalTok{)}
 \NormalTok{\}}
 
-\KeywordTok{head}\NormalTok{(age)}
+\NormalTok{x <-}\StringTok{ }\NormalTok{sel_data[group, ]}
+\NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-##  [1] 18.87523 18.84754 19.73432 22.01716 25.83258 20.98309 29.17945
-##  [8] 22.99593 16.54507 16.56274 23.86443 18.13684 21.16551 18.06575
-## [15] 22.67476 18.32146 20.37872 21.12570 17.01380 19.27299 20.93505
-## [22] 16.81380 16.65884 16.17854 17.92773 18.62649 18.23132 19.58134
-## [29] 19.57079 17.09370
+##       height      age   weight zombies_killed years_of_education
+## 611 68.41098 19.44685 167.1739              2                  5
+## 839 68.23992 19.92937 128.3578              2                  1
+## 528 68.76254 22.06032 158.1506              5                  0
+## 788 68.08977 17.07576 150.9624              3                  2
+## 420 60.21609 13.45451 116.9201              5                  5
+## 278 74.59113 20.23903 183.0497              7                  4
+## 691 67.38948 19.98677 149.4575              5                  1
+## 444 72.41608 20.99180 159.6138              0                  3
+## 86  67.54954 16.51842 142.3150              4                  2
+## 854 65.03123 16.70843 155.7343              2                  3
+## 417 63.94389 13.12491 137.4715              1                  3
+## 102 71.84207 24.15091 141.4530              3                  3
+## 837 65.28277 20.29679 141.1767              2                  3
+## 58  65.29115 20.24615 127.0459              5                  2
+## 414 63.09504 18.87523 117.9726              2                  2
+## 107 63.71453 17.04051 134.6349              3                  2
+## 856 76.44105 23.49016 172.9885              1                  3
+## 853 63.89230 18.06279 130.6773              3                  1
+## 10  72.81769 21.50798 168.5616              2                  3
+## 881 72.82977 20.70497 170.3883              4                  0
+## 734 76.07529 20.90615 179.4847              3                  2
+## 295 66.35689 15.89285 143.0994              3                  1
+## 538 77.95433 25.49342 174.2326              4                  4
+## 181 67.62982 18.61704 139.4286              2                  3
+## 406 71.95263 21.97145 150.5579              4                  2
+## 335 68.16540 20.03842 152.7236              1                  2
+## 445 69.60059 22.85132 130.0793              1                  2
+## 987 71.62507 20.40505 157.0922              4                  5
+## 866 65.89614 19.75214 123.4366              3                  1
+## 531 69.32048 24.53695 140.0381              2                  2
+\end{verbatim}
+
+** means**
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hm <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x}\OperatorTok{$}\NormalTok{height)}
+\NormalTok{hm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 68.81412
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mage <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(age[[i]])}
-
-\NormalTok{mage}
+\NormalTok{am <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{am}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 19.77369
+## [1] 19.81255
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wm <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x}\OperatorTok{$}\NormalTok{weight)}
+\NormalTok{wm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 148.1426
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zm <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x}\OperatorTok{$}\NormalTok{zombies_killed)}
+\NormalTok{zm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.933333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{em <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x}\OperatorTok{$}\NormalTok{years_of_education)}
+\NormalTok{em}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.4
+\end{verbatim}
+
+** standard deviations**
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x}\OperatorTok{$}\NormalTok{height)}
+\NormalTok{hsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.321299
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{asd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{asd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.964591
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x}\OperatorTok{$}\NormalTok{weight)}
+\NormalTok{wsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.31969
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x}\OperatorTok{$}\NormalTok{zombies_killed)}
+\NormalTok{zsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.552158
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{esd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x}\OperatorTok{$}\NormalTok{years_of_education)}
+\NormalTok{esd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.328728
+\end{verbatim}
+
+\textbf{standard errors}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sciplot)}
+\NormalTok{hse <-}\StringTok{ }\KeywordTok{se}\NormalTok{(x}\OperatorTok{$}\NormalTok{height)}
+\NormalTok{hse}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7889576
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ase <-}\StringTok{ }\KeywordTok{se}\NormalTok{(x}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{ase}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5412577
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wse <-}\StringTok{ }\KeywordTok{se}\NormalTok{(x}\OperatorTok{$}\NormalTok{weight)}
+\NormalTok{wse}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.344703
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zse <-}\StringTok{ }\KeywordTok{se}\NormalTok{(x}\OperatorTok{$}\NormalTok{zombies_killed)}
+\NormalTok{zse}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.283384
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ese <-}\StringTok{ }\KeywordTok{se}\NormalTok{(x}\OperatorTok{$}\NormalTok{years_of_education)}
+\NormalTok{ese}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2425914
+\end{verbatim}
+
+\textbf{confidence intervals}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upperheight <-}\StringTok{ }\NormalTok{hm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{hse}
+\NormalTok{lowerheight <-}\StringTok{ }\NormalTok{hm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{hse }
+\NormalTok{hci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(lowerheight, upperheight)}
+\NormalTok{hci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 67.26779 70.36045
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upperage <-}\StringTok{ }\NormalTok{am }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{ase}
+\NormalTok{lowerage <-}\StringTok{ }\NormalTok{am }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{ase }
+\NormalTok{aci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(lowerage, upperage)}
+\NormalTok{aci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.75170 20.87339
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upperweight <-}\StringTok{ }\NormalTok{wm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{wse}
+\NormalTok{lowerweight <-}\StringTok{ }\NormalTok{wm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{wse }
+\NormalTok{wci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(lowerweight, upperweight)}
+\NormalTok{wci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 141.5871 154.6981
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upperkills <-}\StringTok{ }\NormalTok{zm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{zse}
+\NormalTok{lowerkills <-}\StringTok{ }\NormalTok{zm }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{zse }
+\NormalTok{zci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(lowerkills, upperkills)}
+\NormalTok{zci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.377911 3.488756
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upperedu <-}\StringTok{ }\NormalTok{em }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{ese}
+\NormalTok{loweredu <-}\StringTok{ }\NormalTok{em }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{ese }
+\NormalTok{eci <-}\StringTok{ }\KeywordTok{c}\NormalTok{(loweredu, upperedu)}
+\NormalTok{eci}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.92453 2.87547
 \end{verbatim}
 
 2.f. Now draw 99 more random samples of 30 zombies out and calculate the
@@ -728,90 +978,309 @@ mean for each of the these samples. Together with the first sample you
 drew out, you now have a set of 100 means for each variable (each based
 on 30 observations), which constitutes a sampling distribution for each
 variable. What are the means and standard deviations of the sampling
-distribution for each variable? How do the standard deviations compare
-to the standard errors estimated in {[}2.e.{]}? What do these sampling
-distributions look like? Are they normally distributed? What about for
-those variables that you concluded were not originally drawn from a
-normal distribution?
+distribution for each variable?
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \NormalTok{k <-}\StringTok{ }\DecValTok{99}  \CommentTok{# number of subsets taken}
 \NormalTok{n <-}\StringTok{ }\DecValTok{30}  \CommentTok{# subset size}
-\NormalTok{age2 <-}\StringTok{ }\OtherTok{NULL}  \CommentTok{# dummy}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{k) \{}
-\NormalTok{    age2[[i]] <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{replace =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{biggroup <-}\StringTok{ }\OtherTok{NULL}  \CommentTok{# dummy}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{99}\NormalTok{) \{}
+\NormalTok{  biggroup[[i]] <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(sel_data), }\DataTypeTok{size =} \DecValTok{30}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{FALSE}\NormalTok{)}
 \NormalTok{\}}
 
-\KeywordTok{head}\NormalTok{(age2)}
+\NormalTok{t <-}\StringTok{ }\NormalTok{sel_data[biggroup[[i]], ]}
+\NormalTok{t}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [[1]]
-##  [1] 20.90986 15.49664 19.58831 22.39601 22.03788 18.77472 19.19450
-##  [8] 20.28010 24.98712 19.74716 21.09164 17.35896 12.29306 17.31604
-## [15] 20.55057 16.33405 16.19003 26.25881 14.84844 22.34703 17.79204
-## [22] 21.54377 21.80380 19.11892 22.99733 21.43846 20.90615 20.84825
-## [29] 22.04910 22.84620
-## 
-## [[2]]
-##  [1] 23.76366 14.98345 21.71185 24.01948 22.19631 27.68187 20.69956
-##  [8] 21.64507 15.77083 19.16099 24.56925 18.82747 18.62649 18.99893
-## [15] 26.52334 21.91309 16.19753 19.53526 17.35896 21.24646 19.37270
-## [22] 22.29698 18.81568 20.35543 22.15048 21.98378 15.49664 11.13065
-## [29] 15.22140 18.09670
-## 
-## [[3]]
-##  [1] 19.81533 17.64131 21.93743 21.93253 19.36259 25.42632 19.75214
-##  [8] 22.51602 20.77667 20.40242 18.54973 19.16468 20.48590 22.39316
-## [15] 19.19267 21.43846 23.89309 20.26560 25.32669 18.37246 20.32666
-## [22] 23.68478 22.29698 18.61992 15.96942 16.52151 22.42920 18.04177
-## [29] 21.31904 17.64006
-## 
-## [[4]]
-##  [1] 20.49434 18.58842 20.32666 24.09405 17.95730 16.15942 19.16468
-##  [8] 25.32669 19.66843 21.73021 19.73432 15.44328 20.35923 20.69956
-## [15] 16.40678 20.05336 23.19955 20.46354 25.11161 17.95568 18.77472
-## [22] 21.42676 21.33236 18.72847 21.61279 19.38947 23.88692 18.87523
-## [29] 21.43846 24.00647
-## 
-## [[5]]
-##  [1] 18.61760 20.22591 23.97528 25.82221 22.18075 17.90380 16.62255
-##  [8] 22.15048 16.75516 20.29005 18.45236 17.38376 17.08913 17.63057
-## [15] 22.00580 19.55997 16.74267 20.43760 18.61704 18.43727 18.73962
-## [22] 20.95489 13.12491 19.91412 20.79042 19.85983 19.59841 19.24192
-## [29] 18.92719 21.64507
-## 
-## [[6]]
-##  [1] 20.37958 16.10785 23.76366 17.95730 20.16242 21.91993 23.68478
-##  [8] 19.07924 17.96982 18.89775 16.50640 20.11425 16.32636 19.87259
-## [15] 20.79042 22.34368 19.16099 20.22591 23.25794 20.57065 18.67945
-## [22] 17.64006 23.94809 25.57398 21.97010 18.29770 18.54973 15.47891
-## [29] 23.67717 21.83863
+##       height      age   weight zombies_killed years_of_education
+## 63  63.16399 16.78669 126.6091              1                  3
+## 997 66.48566 19.87402 157.0878              3                  2
+## 114 72.66829 19.19078 176.6687              2                  3
+## 624 63.42365 17.07766 131.4085              2                  3
+## 26  66.21361 18.82527 147.5891              1                  3
+## 69  67.17319 20.81643 137.0979              1                  2
+## 188 71.49300 19.91412 162.2126              5                  3
+## 795 70.09081 16.55408 160.1624              5                  3
+## 829 63.24188 18.85515 128.4248              1                  3
+## 719 73.81399 27.37130 159.5498              4                  3
+## 278 74.59113 20.23903 183.0497              7                  4
+## 636 69.74712 20.39527 143.6522              1                  3
+## 948 70.19100 23.41001 160.5423              2                  1
+## 531 69.32048 24.53695 140.0381              2                  2
+## 426 68.58895 21.32987 139.3016              3                  3
+## 714 66.26057 17.36132 158.5050              3                  1
+## 172 69.38269 25.74573 140.2724              4                  4
+## 315 65.69532 20.38294 123.4174              5                  4
+## 381 60.59620 15.60612 124.3349              2                  3
+## 54  62.42483 18.29770 140.5250              1                  0
+## 273 62.65719 18.50000 148.3196              2                  3
+## 701 67.38798 19.64791 146.0300              1                  3
+## 322 63.74886 18.75647 131.5360              3                  6
+## 588 65.74474 19.78770 126.9184              2                  1
+## 512 75.86921 23.43548 181.7209              4                  2
+## 840 66.41866 21.11497 140.7097              4                  4
+## 519 68.49669 16.22865 158.3162              0                  5
+## 109 69.63299 24.14089 140.8563              5                  5
+## 755 66.13981 22.98415 125.8349              4                  0
+## 62  67.60233 19.97048 145.2308              3                  2
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mage2 <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(age2[[i]])}
-\NormalTok{mage2}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(t, x)}
+\NormalTok{y}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.38096
+##        height      age   weight zombies_killed years_of_education
+## 63   63.16399 16.78669 126.6091              1                  3
+## 997  66.48566 19.87402 157.0878              3                  2
+## 114  72.66829 19.19078 176.6687              2                  3
+## 624  63.42365 17.07766 131.4085              2                  3
+## 26   66.21361 18.82527 147.5891              1                  3
+## 69   67.17319 20.81643 137.0979              1                  2
+## 188  71.49300 19.91412 162.2126              5                  3
+## 795  70.09081 16.55408 160.1624              5                  3
+## 829  63.24188 18.85515 128.4248              1                  3
+## 719  73.81399 27.37130 159.5498              4                  3
+## 278  74.59113 20.23903 183.0497              7                  4
+## 636  69.74712 20.39527 143.6522              1                  3
+## 948  70.19100 23.41001 160.5423              2                  1
+## 531  69.32048 24.53695 140.0381              2                  2
+## 426  68.58895 21.32987 139.3016              3                  3
+## 714  66.26057 17.36132 158.5050              3                  1
+## 172  69.38269 25.74573 140.2724              4                  4
+## 315  65.69532 20.38294 123.4174              5                  4
+## 381  60.59620 15.60612 124.3349              2                  3
+## 54   62.42483 18.29770 140.5250              1                  0
+## 273  62.65719 18.50000 148.3196              2                  3
+## 701  67.38798 19.64791 146.0300              1                  3
+## 322  63.74886 18.75647 131.5360              3                  6
+## 588  65.74474 19.78770 126.9184              2                  1
+## 512  75.86921 23.43548 181.7209              4                  2
+## 840  66.41866 21.11497 140.7097              4                  4
+## 519  68.49669 16.22865 158.3162              0                  5
+## 109  69.63299 24.14089 140.8563              5                  5
+## 755  66.13981 22.98415 125.8349              4                  0
+## 62   67.60233 19.97048 145.2308              3                  2
+## 611  68.41098 19.44685 167.1739              2                  5
+## 839  68.23992 19.92937 128.3578              2                  1
+## 528  68.76254 22.06032 158.1506              5                  0
+## 788  68.08977 17.07576 150.9624              3                  2
+## 420  60.21609 13.45451 116.9201              5                  5
+## 2781 74.59113 20.23903 183.0497              7                  4
+## 691  67.38948 19.98677 149.4575              5                  1
+## 444  72.41608 20.99180 159.6138              0                  3
+## 86   67.54954 16.51842 142.3150              4                  2
+## 854  65.03123 16.70843 155.7343              2                  3
+## 417  63.94389 13.12491 137.4715              1                  3
+## 102  71.84207 24.15091 141.4530              3                  3
+## 837  65.28277 20.29679 141.1767              2                  3
+## 58   65.29115 20.24615 127.0459              5                  2
+## 414  63.09504 18.87523 117.9726              2                  2
+## 107  63.71453 17.04051 134.6349              3                  2
+## 856  76.44105 23.49016 172.9885              1                  3
+## 853  63.89230 18.06279 130.6773              3                  1
+## 10   72.81769 21.50798 168.5616              2                  3
+## 881  72.82977 20.70497 170.3883              4                  0
+## 734  76.07529 20.90615 179.4847              3                  2
+## 295  66.35689 15.89285 143.0994              3                  1
+## 538  77.95433 25.49342 174.2326              4                  4
+## 181  67.62982 18.61704 139.4286              2                  3
+## 406  71.95263 21.97145 150.5579              4                  2
+## 335  68.16540 20.03842 152.7236              1                  2
+## 445  69.60059 22.85132 130.0793              1                  2
+## 987  71.62507 20.40505 157.0922              4                  5
+## 866  65.89614 19.75214 123.4366              3                  1
+## 5311 69.32048 24.53695 140.0381              2                  2
+\end{verbatim}
+
+\textbf{Group Means}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mgh <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y}\OperatorTok{$}\NormalTok{height)}
+\NormalTok{mgh}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 68.21147
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mtage <-}\StringTok{ }\NormalTok{(mage }\OperatorTok{+}\StringTok{ }\NormalTok{mage2)}\OperatorTok{/}\DecValTok{2}
-\NormalTok{mtage}
+\NormalTok{mga  <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{mga}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.07732
+## [1] 20.02523
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mgw <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y}\OperatorTok{$}\NormalTok{weight)}
+\NormalTok{mgw}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 147.17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mgz <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y}\OperatorTok{$}\NormalTok{zombies_killed)}
+\NormalTok{mgz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.85
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mge <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y}\OperatorTok{$}\NormalTok{years_of_education)}
+\NormalTok{mge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.6
+\end{verbatim}
+
+\textbf{group standard deviations}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hgsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y}\OperatorTok{$}\NormalTok{height)}
+\NormalTok{hgsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.068504
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{agsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y}\OperatorTok{$}\NormalTok{age)}
+\NormalTok{agsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.907647
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wgsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y}\OperatorTok{$}\NormalTok{weight)}
+\NormalTok{wgsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17.37671
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zgsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y}\OperatorTok{$}\NormalTok{zombies_killed)}
+\NormalTok{zgsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.592621
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{egsd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y}\OperatorTok{$}\NormalTok{years_of_education)}
+\NormalTok{egsd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.355466
+\end{verbatim}
+
+How do the standard deviations compare to the standard errors estimated
+in {[}2.e.{]}? \emph{The standared deviations of the the bigger group
+are all within the standard errors for the small group}
+
+What do these sampling distributions look like?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(y}\OperatorTok{$}\NormalTok{height, }\DataTypeTok{xlab =} \StringTok{"Mean of Height"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Distribution of Means of Height from Simulation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mgh, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)  }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{height), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Locker-Angelina-ADA-Homework-02_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(y}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{xlab =} \StringTok{"Mean of Age"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Distribution of Means of Age from Simulation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mga, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)  }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{age), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)  }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Locker-Angelina-ADA-Homework-02_files/figure-latex/unnamed-chunk-21-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(y}\OperatorTok{$}\NormalTok{weight, }\DataTypeTok{xlab =} \StringTok{"Mean of Weight"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Distribution of Means of Weight from Simulation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mgw, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)  }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{weight), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Locker-Angelina-ADA-Homework-02_files/figure-latex/unnamed-chunk-21-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(y}\OperatorTok{$}\NormalTok{zombies_killed, }\DataTypeTok{xlab =} \StringTok{"Mean of Kills"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Distribution of Means of Kills from Simulation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mgz, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)  }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{zombies_killed), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Locker-Angelina-ADA-Homework-02_files/figure-latex/unnamed-chunk-21-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(y}\OperatorTok{$}\NormalTok{years_of_education, }\DataTypeTok{xlab =} \StringTok{"Mean of Education"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Distribution of Means of Education from Simulation"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =}\NormalTok{ mge, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)  }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{years_of_education), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Locker-Angelina-ADA-Homework-02_files/figure-latex/unnamed-chunk-21-5.pdf}
+
+Are they normally distributed? \emph{not all of them, but age, height,
+and education appear to be.}
+
+What about for those variables that you concluded were not originally
+drawn from a normal distribution? \emph{weight actually looks bimodal,
+so it's not a normal distribution, although I origianlly thought it was.
+I'm wondering if I parcelled out weight by gender if it would look like
+a normal distribution. The number of kills does not appear to be a
+normal distribution, but age, height, and education are more bell curve
+shaped.}
 
 When you are done, ``knit'' your R Markdown file to .html and push both
 your .Rmd and .html files up to GitHub for me to look at.
